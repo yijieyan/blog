@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>docker 网络 | yijie</title>
+    <meta name="description" content="Just playing around">
+    
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.8241d59c.css" as="style"><link rel="preload" href="/blog/assets/js/app.8033995d.js" as="script"><link rel="preload" href="/blog/assets/js/2.6e15f4d2.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.231220bf.js"><link rel="prefetch" href="/blog/assets/js/11.8ff4281d.js"><link rel="prefetch" href="/blog/assets/js/12.9bf66a63.js"><link rel="prefetch" href="/blog/assets/js/13.8f617254.js"><link rel="prefetch" href="/blog/assets/js/14.7be5c5fc.js"><link rel="prefetch" href="/blog/assets/js/15.ba5bb027.js"><link rel="prefetch" href="/blog/assets/js/16.d1cbce29.js"><link rel="prefetch" href="/blog/assets/js/17.509e09e5.js"><link rel="prefetch" href="/blog/assets/js/18.2844b4a2.js"><link rel="prefetch" href="/blog/assets/js/3.6b024f12.js"><link rel="prefetch" href="/blog/assets/js/4.99b10897.js"><link rel="prefetch" href="/blog/assets/js/5.1663d93c.js"><link rel="prefetch" href="/blog/assets/js/6.24055a12.js"><link rel="prefetch" href="/blog/assets/js/7.119eb3c0.js"><link rel="prefetch" href="/blog/assets/js/8.b922d863.js"><link rel="prefetch" href="/blog/assets/js/9.b8c6b35e.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.8241d59c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">yijie</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">Home</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">Home</a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading"><span>node</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/node/install/" class="sidebar-link">node 环境搭建 for centos、ubuntu、macOS</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>nginx</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/nginx/install/" class="sidebar-link">nginx 安装 for centos7.x</a></li><li><a href="/blog/blog/nginx/nginx_web/" class="sidebar-link">nginx 作为web服务器的常用配置</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading open"><span>docker</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/docker/docker1/" class="sidebar-link">docker 安装</a></li><li><a href="/blog/blog/docker/docker2/" class="sidebar-link">docker 命令介绍</a></li><li><a href="/blog/blog/docker/docker3/" class="active sidebar-link">docker 网络</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>http</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/http/http1/" class="sidebar-link">http 简介</a></li><li><a href="/blog/blog/http/http2/" class="sidebar-link">http cors 简介</a></li><li><a href="/blog/blog/http/http3/" class="sidebar-link">http cache-Control 缓存小节</a></li><li><a href="/blog/blog/http/http4/" class="sidebar-link">http长连接、cookie、数据协商</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>杂记</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/axios/download/" class="sidebar-link">axios post 下载文件</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>支付宝返回form表单新页面打开</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/thoughts/zfbJump/" class="sidebar-link">vue点击按钮新页面打开一个支付宝的支付页面</a></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><p>本节探讨一下docker 的多个容器是怎么通信的
+首先准备环境</p> <div class="language- extra-class"><pre class="language-text"><code>$ docker pull busybox
+$ sudo yum install -y bridge-utils
+</code></pre></div><p><img src="/blog/assets/img/1.48012ae3.png" alt></p> <p><img src="/blog/assets/img/2.f6783150.png" alt></p> <p>启动一个容器</p> <div class="language- extra-class"><pre class="language-text"><code>$ docker run -itd --name test1 busybox
+</code></pre></div><p><img src="/blog/assets/img/3.7cac6e03.png" alt>
+再启动一个容器添加一个link</p> <div class="language- extra-class"><pre class="language-text"><code>$ docker run -itd --name test2 --link=test1 busybox
+</code></pre></div><p><img src="/blog/assets/img/4.793cd6ee.png" alt>
+test2可以和test1进行通信说明是可达的
+反之看一下test1 能否和test2通信
+<img src="/blog/assets/img/5.a6d97d7f.png" alt>
+经过测试test1和test2是不可达的</p> <p>再看一下test1和test2连接的网桥
+<img src="/blog/assets/img/6.c9ae9f74.png" alt>
+继续往下找</p> <p><img src="/blog/assets/img/7.e3de225d.png" alt></p> <p>test1的ip:
+<img src="/blog/assets/img/8.246bf81f.png" alt></p> <p>test2的ip:</p> <p><img src="/blog/assets/img/9.40a45b84.png" alt></p> <p><img src="/blog/assets/img/10.0aa0429d.png" alt>
+可以进入test1和test2的容器内部查看ip和这里的一样,可以证明容器自动连接在docker0这个网卡上,默认是无法彼此间通信,需要用--link去指定</p> <blockquote><p>如果容器启动的很多,--link的方法很不方便,下面换一种方法,创建一个网桥,所有的容器连接在新建的网桥上</p></blockquote> <p>先把容器全部删掉</p> <div class="language- extra-class"><pre class="language-text"><code>$ docker rm -f test1 test2
+</code></pre></div><p>先看一下docker network 有哪些命令</p> <p><img src="/blog/assets/img/11.04e8e13a.png" alt></p> <p>下面先创建一个bridge
+再启动2个容器并连接到新建的bridge上</p> <p><img src="/blog/assets/img/12.2fe13e92.png" alt></p> <p>再来看一下bridge 和new-bridge</p> <div class="language- extra-class"><pre class="language-text"><code>$ docker network inspect bridge
+</code></pre></div><p><img src="/blog/assets/img/13.a2cbff03.png" alt>
+没有任何一个容器连接在bridge上</p> <div class="language- extra-class"><pre class="language-text"><code>$ docker network inspect new-bridge
+</code></pre></div><p><img src="/blog/assets/img/14.7d6642e0.png" alt></p> <p>可以看到test1和test2确实连接在新建的  new-bridge上</p> <p>再一次进入test1 和test2容器内去ping 对方
+<img src="/blog/assets/img/15.e50d23a8.png" alt></p> <p><img src="/blog/assets/img/16.ba9667b2.png" alt>
+可以看到没有任何的容器连接在docker0上</p> <p>总结: 容器内之间进行通信的方式有2种</p> <ol><li>启动的时候用--link 指定 container。</li> <li>新建一个网桥,把所有的容器连接在新建的网桥上。</li></ol></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/blog/blog/docker/docker2/" class="prev">
+          docker 命令介绍
+        </a></span> <span class="next"><a href="/blog/blog/http/http1/">
+          http 简介
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/blog/assets/js/app.8033995d.js" defer></script><script src="/blog/assets/js/2.6e15f4d2.js" defer></script>
+  </body>
+</html>

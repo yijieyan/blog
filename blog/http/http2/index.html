@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>http cors 简介 | yijie</title>
+    <meta name="description" content="Just playing around">
+    
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.8241d59c.css" as="style"><link rel="preload" href="/blog/assets/js/app.8033995d.js" as="script"><link rel="preload" href="/blog/assets/js/7.119eb3c0.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.231220bf.js"><link rel="prefetch" href="/blog/assets/js/11.8ff4281d.js"><link rel="prefetch" href="/blog/assets/js/12.9bf66a63.js"><link rel="prefetch" href="/blog/assets/js/13.8f617254.js"><link rel="prefetch" href="/blog/assets/js/14.7be5c5fc.js"><link rel="prefetch" href="/blog/assets/js/15.ba5bb027.js"><link rel="prefetch" href="/blog/assets/js/16.d1cbce29.js"><link rel="prefetch" href="/blog/assets/js/17.509e09e5.js"><link rel="prefetch" href="/blog/assets/js/18.2844b4a2.js"><link rel="prefetch" href="/blog/assets/js/2.6e15f4d2.js"><link rel="prefetch" href="/blog/assets/js/3.6b024f12.js"><link rel="prefetch" href="/blog/assets/js/4.99b10897.js"><link rel="prefetch" href="/blog/assets/js/5.1663d93c.js"><link rel="prefetch" href="/blog/assets/js/6.24055a12.js"><link rel="prefetch" href="/blog/assets/js/8.b922d863.js"><link rel="prefetch" href="/blog/assets/js/9.b8c6b35e.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.8241d59c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">yijie</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">Home</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">Home</a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading"><span>node</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/node/install/" class="sidebar-link">node 环境搭建 for centos、ubuntu、macOS</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>nginx</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/nginx/install/" class="sidebar-link">nginx 安装 for centos7.x</a></li><li><a href="/blog/blog/nginx/nginx_web/" class="sidebar-link">nginx 作为web服务器的常用配置</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>docker</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/docker/docker1/" class="sidebar-link">docker 安装</a></li><li><a href="/blog/blog/docker/docker2/" class="sidebar-link">docker 命令介绍</a></li><li><a href="/blog/blog/docker/docker3/" class="sidebar-link">docker 网络</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading open"><span>http</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/http/http1/" class="sidebar-link">http 简介</a></li><li><a href="/blog/blog/http/http2/" class="active sidebar-link">http cors 简介</a></li><li><a href="/blog/blog/http/http3/" class="sidebar-link">http cache-Control 缓存小节</a></li><li><a href="/blog/blog/http/http4/" class="sidebar-link">http长连接、cookie、数据协商</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>杂记</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/axios/download/" class="sidebar-link">axios post 下载文件</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>支付宝返回form表单新页面打开</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/thoughts/zfbJump/" class="sidebar-link">vue点击按钮新页面打开一个支付宝的支付页面</a></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><p>跨域问题</p> <p>首先启动2个server,一个代理前端的代码,一个提供api接口
+这里前端我偷懒使用<a href="https://www.npmjs.com/package/http-server" target="_blank" rel="noopener noreferrer">http-server<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>这个模块,
+前端写一个简单的ajax请求后端的接口,</p> <p>前端代码</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script&gt;
+    fetch('http://localhost:3000/')
+      .then(res =&gt; res.json())
+      .then(data =&gt; {
+        console.log(data)
+      })
+      .then((err) =&gt; {
+        console.log(`error: ${err}`);
+      })
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div><p>后端代码</p> <div class="language- extra-class"><pre class="language-text"><code>let koa = require('koa');
+let app =new koa();
+
+app.use(async (ctx, next) =&gt; {
+  ctx.body = {code: 0, data: `successful`};
+});
+
+app.listen(3000, () =&gt; {
+  console.log(`listen 3000 ...`);
+})
+</code></pre></div><p>准备好实验环境,分别启动对应的server,用浏览器访问结果如下:
+<img src="/blog/assets/img/4.80fa90d1.png" alt></p> <p>这是比较经常遇到的跨域问题,解决办法1. 代理 2. 后端处理,为了解决这个问题,修改后端的代码</p> <div class="language- extra-class"><pre class="language-text"><code>let koa = require('koa');
+let app =new koa();
+
+app.use(async (ctx, next) =&gt; {
+  ctx.set({
+    &quot;Access-Control-Allow-Origin&quot;: &quot;*&quot;
+  });
+  ctx.body = {code: 0, data: `successful`};
+});
+
+app.listen(3000, () =&gt; {
+  console.log(`listen 3000 ...`);
+})
+</code></pre></div><p>再起重启服务器,刷新浏览器</p> <p><img src="/blog/assets/img/5.7ee9f0d8.png" alt></p> <p>如果把get请求改成post,并且在header里加上个token,结果会怎么样,试一下</p> <p>修改前端代码:</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;script&gt;
+  fetch('http://localhost:3000/', {
+      method: 'POST',
+      headers: {
+        'token': '123'
+      }
+    })
+    .then(res =&gt; res.json())
+    .then(data =&gt; {
+      console.log(data)
+    })
+    .then((err) =&gt; {
+      console.log(`error: ${err}`);
+    })
+&lt;/script&gt;
+</code></pre></div><p>访问浏览器</p> <p><img src="/blog/assets/img/6.94cb42ab.png" alt></p> <p>是不是很奇怪,平时我们开发vue等单页应用经常用axios在header里面添加token没报过这个错,
+为什么这里会报错呢</p> <p>原因:vue使用了webpack里面的<a href="https://www.webpackjs.com/configuration/dev-server/#devserver-proxy" target="_blank" rel="noopener noreferrer">devserver-proxy<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>,帮助我们开发的时候后端代理了,如果在2个不同的域名下就会这样。</p> <p>所以,在一些浏览器允许的字段<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="noopener noreferrer">白名单<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>之外,都是被浏览器视为不安全的,就算设置了跨域,没设置跨域的heder也是会报错的,解决办法,就是在后端添加进去我们要传的头。</p> <p>修改后端代码</p> <div class="language- extra-class"><pre class="language-text"><code>app.use(async (ctx, next) =&gt; {
+  ctx.set(&quot;Access-Control-Allow-Origin&quot;,&quot;*&quot;);
+  ctx.set(&quot;Access-Control-Allow-Headers&quot;, &quot;token&quot;);
+  ctx.body = {code: 0, data: `successful`};
+});
+</code></pre></div><p>再重启服务器,然后刷新页面
+<img src="/blog/assets/img/7.b97c8cd7.png" alt></p> <p>再服务器设置了</p> <div class="language- extra-class"><pre class="language-text"><code>ctx.set(&quot;Access-Control-Allow-Origin&quot;,&quot;*&quot;);
+</code></pre></div><p>之后,并不是万能的,很多浏览器不允许的字段还是不行的,再浏览器预请求会报错。</p> <p>浏览器允许的字段有下面这些,具体参照<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="noopener noreferrer">mdn<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <div class="language- extra-class"><pre class="language-text"><code>------------
+GET
+HEAD
+POST
+------------
+Accept
+Accept-Language
+Content-Language
+Content-Type （需要注意额外的限制）
+DPR
+Downlink
+Save-Data
+Viewport-Width
+Width
+------------
+Content-Type 的值仅限于下列三者之一：
+text/plain
+multipart/form-data
+application/x-www-form-urlencoded
+</code></pre></div><p>不在这里面的都会进行预请求。</p> <p>参考第三方库,里面一般都包含这几个</p> <div class="language- extra-class"><pre class="language-text"><code>ctx.set(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);
+// 允许所有的域名
+ctx.set(&quot;Access-Control-Allow-Methods&quot;, &quot;OPTIONS, GET, PUT, POST, DELETE&quot;);
+// 允许的方法
+ctx.set(&quot;Access-Control-Allow-Headers&quot;, &quot;x-requested-with, accept, origin, content-type&quot;);
+// 支持的头信息
+ ctx.set(&quot;Access-Control-Allow-Credentials&quot;, true);
+ // 跨域携带cookie,需要保证&quot;Access-Control-Allow-Origin&quot;是服务器有的域名，而不能是&quot;*&quot;
+ ctx.set(&quot;Access-Control-Max-Age&quot;, 300);
+ // 设置300s内不用再次进行预请求也就是再发option请求
+</code></pre></div></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/blog/blog/http/http1/" class="prev">
+          http 简介
+        </a></span> <span class="next"><a href="/blog/blog/http/http3/">
+          http cache-Control 缓存小节
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/blog/assets/js/app.8033995d.js" defer></script><script src="/blog/assets/js/7.119eb3c0.js" defer></script>
+  </body>
+</html>

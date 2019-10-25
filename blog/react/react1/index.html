@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>react-todolist | yijie</title>
+    <meta name="description" content="Just playing around">
+    
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.8241d59c.css" as="style"><link rel="preload" href="/blog/assets/js/app.8033995d.js" as="script"><link rel="preload" href="/blog/assets/js/16.d1cbce29.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.231220bf.js"><link rel="prefetch" href="/blog/assets/js/11.8ff4281d.js"><link rel="prefetch" href="/blog/assets/js/12.9bf66a63.js"><link rel="prefetch" href="/blog/assets/js/13.8f617254.js"><link rel="prefetch" href="/blog/assets/js/14.7be5c5fc.js"><link rel="prefetch" href="/blog/assets/js/15.ba5bb027.js"><link rel="prefetch" href="/blog/assets/js/17.509e09e5.js"><link rel="prefetch" href="/blog/assets/js/18.2844b4a2.js"><link rel="prefetch" href="/blog/assets/js/2.6e15f4d2.js"><link rel="prefetch" href="/blog/assets/js/3.6b024f12.js"><link rel="prefetch" href="/blog/assets/js/4.99b10897.js"><link rel="prefetch" href="/blog/assets/js/5.1663d93c.js"><link rel="prefetch" href="/blog/assets/js/6.24055a12.js"><link rel="prefetch" href="/blog/assets/js/7.119eb3c0.js"><link rel="prefetch" href="/blog/assets/js/8.b922d863.js"><link rel="prefetch" href="/blog/assets/js/9.b8c6b35e.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.8241d59c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">yijie</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">Home</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">Home</a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>node</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/node/install/" class="sidebar-link">node 环境搭建 for centos、ubuntu、macOS</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>nginx</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/nginx/install/" class="sidebar-link">nginx 安装 for centos7.x</a></li><li><a href="/blog/blog/nginx/nginx_web/" class="sidebar-link">nginx 作为web服务器的常用配置</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>docker</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/docker/docker1/" class="sidebar-link">docker 安装</a></li><li><a href="/blog/blog/docker/docker2/" class="sidebar-link">docker 命令介绍</a></li><li><a href="/blog/blog/docker/docker3/" class="sidebar-link">docker 网络</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>http</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/http/http1/" class="sidebar-link">http 简介</a></li><li><a href="/blog/blog/http/http2/" class="sidebar-link">http cors 简介</a></li><li><a href="/blog/blog/http/http3/" class="sidebar-link">http cache-Control 缓存小节</a></li><li><a href="/blog/blog/http/http4/" class="sidebar-link">http长连接、cookie、数据协商</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>杂记</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/axios/download/" class="sidebar-link">axios post 下载文件</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>支付宝返回form表单新页面打开</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/thoughts/zfbJump/" class="sidebar-link">vue点击按钮新页面打开一个支付宝的支付页面</a></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><p>react很早就有注意到，但是因为工作不用，所以一直也就是知道大概的用法，能写个demo的水平。
+所以，准备在接下一段时间系统的学习一下。今天先记录一下第一个demo的小知识点</p> <p>先把代码贴上来，在分析知识点</p> <div class="language- extra-class"><pre class="language-text"><code>import React ,{Component,Fragment} from 'react'
+
+class TodoList extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      value: '',
+      lists: []
+    }
+  }
+
+  // 输入框改变触发的函数
+  handleValueChange = (e) =&gt; {
+    this.setState({
+      value: e.target.value
+    })
+  }
+
+  // 点击添加按钮
+  handleBtnClick = () =&gt; {
+    this.setState({
+      lists: [...this.state.lists, this.state.value],
+      value: ''
+    })
+  }
+
+  // 点击删除按钮
+  handleDeleteClick = (index) =&gt; {
+    let lists = [...this.state.lists]
+    lists.splice(index, 1)
+    this.setState({
+      lists
+    })
+  }
+
+  render () {
+     return (
+     &lt;Fragment&gt;
+       &lt;label htmlFor=&quot;input&quot;&gt;请输入 &lt;/label&gt;
+       &lt;input id=&quot;input&quot; value={this.state.value} onChange={this.handleValueChange}/&gt;
+        &lt;button onClick={this.handleBtnClick}&gt;添加&lt;/button&gt;
+        &lt;ul&gt;
+         {
+           this.state.lists.map((item, index) =&gt; {
+             return (
+              &lt;li key={index} onClick={() =&gt; this.handleDeleteClick(index)}
+                dangerouslySetInnerHTML={{__html: item}}
+              &gt;
+              &lt;/li&gt;
+             )
+           })
+         }
+        &lt;/ul&gt;
+     &lt;/Fragment&gt;
+    )
+  }
+}
+
+export default TodoList
+</code></pre></div><ol><li>... es6数组的扩展运算符,把数组或类数组对象展开成一系列用逗号隔开的值 (这个是深拷贝,和数组直接赋值不一样)</li> <li>数组的map方法, 这个是es5的方法，这个一般都会用返回一个数组,经常用到的forEach、map、filter等。</li> <li><a href="http://www.css88.com/react/docs/fragments.html" target="_blank" rel="noopener noreferrer">Fragment<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 片段,可以减少无用的标签(多余的)。</li> <li>dangerouslySetInnerHTML 不转义html标签和vue里面的v-html一个作用</li> <li>label, 点击label让后面的元素获取焦点,在react不是用for 而是用htmlFor</li></ol> <h3 id="把列表拆分出去单独作为一个组件-改写代码"><a href="#把列表拆分出去单独作为一个组件-改写代码" aria-hidden="true" class="header-anchor">#</a> 把列表拆分出去单独作为一个组件,改写代码</h3> <p>TodoList 组件</p> <div class="language- extra-class"><pre class="language-text"><code>import React ,{Component,Fragment} from 'react'
+import TodoItem from './TodoItem'
+
+class TodoList extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      value: '',
+      lists: []
+    }
+  }
+
+  // 输入框改变触发的函数
+  handleValueChange = (e) =&gt; {
+    this.setState({
+      value: e.target.value
+    })
+  }
+
+  // 点击添加按钮
+  handleBtnClick = () =&gt; {
+    this.setState({
+      lists: [...this.state.lists, this.state.value],
+      value: ''
+    })
+  }
+
+  // 点击删除按钮
+  handleDeleteClick = (index) =&gt; {
+    let lists = [...this.state.lists]
+    lists.splice(index, 1)
+    this.setState({
+      lists
+    })
+  }
+
+  render () {
+     return (
+     &lt;Fragment&gt;
+       &lt;label htmlFor=&quot;input&quot;&gt;请输入 &lt;/label&gt;
+       &lt;input id=&quot;input&quot; value={this.state.value} onChange={this.handleValueChange}/&gt;
+        &lt;button onClick={this.handleBtnClick}&gt;添加&lt;/button&gt;
+        &lt;ul&gt;
+         {
+           this.state.lists.map((item, index) =&gt;(
+            &lt;TodoItem deleteItem={this.handleDeleteClick}
+              index={index} content={item} key={index}
+            /&gt;
+           )
+          )
+         }
+        &lt;/ul&gt;
+     &lt;/Fragment&gt;
+    )
+  }
+}
+
+export default TodoList
+</code></pre></div><p>TodoItem组件的代码</p> <div class="language- extra-class"><pre class="language-text"><code>import React ,{Component} from 'react';
+class TodoItem extends Component {
+
+
+  handleDelClick = (index) =&gt; {
+    let {deleteItem} = this.props
+    deleteItem(index)
+  }
+
+  render () {
+    let {content, index} = this.props
+    return (
+      &lt;li dangerouslySetInnerHTML={{__html: content}} key={index}
+        onClick={() =&gt; this.handleDelClick(index)}
+      &gt;&lt;/li&gt;
+    )
+  }
+}
+
+export default TodoItem;
+</code></pre></div><ol><li>拆分成组件会使代码变的简洁，更加清晰。</li> <li>父组件向子组件传值，子组件通过如何接收父组件传过来的值(this.props 父组件传过来的值都在这个对象里)</li> <li>子组件向父组件传值，通过调用父组件传过来的方法，调用父组件的方法传值。</li></ol> <h3 id="优化一下代码"><a href="#优化一下代码" aria-hidden="true" class="header-anchor">#</a> 优化一下代码</h3> <p>TodoList:</p> <div class="language- extra-class"><pre class="language-text"><code>import React ,{Component,Fragment} from 'react'
+import TodoItem from './TodoItem'
+
+class TodoList extends Component {
+  constructor (props) {
+    super(props)
+    // 唯一可以分配 this.state 的地方是构造函数。
+    this.state = {
+      value: '',
+      lists: []
+    }
+  }
+
+  // 输入框改变触发的函数
+  handleValueChange = (e) =&gt; {
+    this.setState({
+      value: e.target.value
+    })
+  }
+
+  // 点击添加按钮
+  handleBtnClick = () =&gt; {
+
+    // this.setState可以接受第二种方式改变值，传递一个函数返回一个对象。
+    this.setState((prevState) =&gt; (
+      {
+        lists: [...prevState.lists, prevState.value],
+        value: ''
+      }
+    ))
+  }
+
+  // 点击删除按钮
+  handleDeleteClick = (index) =&gt; {
+    console.log('111111111111111:', index)
+    // this.setState可以接受第二种方式改变值，传递一个函数返回一个对象。
+    this.setState((prevState) =&gt; {
+      let lists = prevState.lists;
+      lists.splice(index, 1);
+      return {lists}
+    })
+  }
+
+  render () {
+     return (
+     &lt;Fragment&gt;
+       &lt;label htmlFor=&quot;input&quot;&gt;请输入 &lt;/label&gt;
+       &lt;input id=&quot;input&quot; value={this.state.value} onChange={this.handleValueChange}/&gt;
+        &lt;button onClick={this.handleBtnClick}&gt;添加&lt;/button&gt;
+        &lt;ul&gt;
+         {
+           this.state.lists.map((item, index) =&gt;(
+            &lt;TodoItem deleteItem={this.handleDeleteClick}
+              index={index} content={item} key={index}
+            /&gt;
+           ))
+         }
+        &lt;/ul&gt;
+     &lt;/Fragment&gt;
+    )
+  }
+}
+
+export default TodoList
+</code></pre></div><ol><li>使用第二种setState的使用方法，传递一个参数返回一个object</li></ol></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/blog/assets/js/app.8033995d.js" defer></script><script src="/blog/assets/js/16.d1cbce29.js" defer></script>
+  </body>
+</html>

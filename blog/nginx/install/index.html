@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>nginx 安装 for centos7.x | yijie</title>
+    <meta name="description" content="Just playing around">
+    
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.8241d59c.css" as="style"><link rel="preload" href="/blog/assets/js/app.8033995d.js" as="script"><link rel="preload" href="/blog/assets/js/13.8f617254.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.231220bf.js"><link rel="prefetch" href="/blog/assets/js/11.8ff4281d.js"><link rel="prefetch" href="/blog/assets/js/12.9bf66a63.js"><link rel="prefetch" href="/blog/assets/js/14.7be5c5fc.js"><link rel="prefetch" href="/blog/assets/js/15.ba5bb027.js"><link rel="prefetch" href="/blog/assets/js/16.d1cbce29.js"><link rel="prefetch" href="/blog/assets/js/17.509e09e5.js"><link rel="prefetch" href="/blog/assets/js/18.2844b4a2.js"><link rel="prefetch" href="/blog/assets/js/2.6e15f4d2.js"><link rel="prefetch" href="/blog/assets/js/3.6b024f12.js"><link rel="prefetch" href="/blog/assets/js/4.99b10897.js"><link rel="prefetch" href="/blog/assets/js/5.1663d93c.js"><link rel="prefetch" href="/blog/assets/js/6.24055a12.js"><link rel="prefetch" href="/blog/assets/js/7.119eb3c0.js"><link rel="prefetch" href="/blog/assets/js/8.b922d863.js"><link rel="prefetch" href="/blog/assets/js/9.b8c6b35e.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.8241d59c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">yijie</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">Home</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">Home</a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading"><span>node</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/node/install/" class="sidebar-link">node 环境搭建 for centos、ubuntu、macOS</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading open"><span>nginx</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/nginx/install/" class="active sidebar-link">nginx 安装 for centos7.x</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/blog/nginx/nginx_web/" class="sidebar-link">nginx 作为web服务器的常用配置</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>docker</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/docker/docker1/" class="sidebar-link">docker 安装</a></li><li><a href="/blog/blog/docker/docker2/" class="sidebar-link">docker 命令介绍</a></li><li><a href="/blog/blog/docker/docker3/" class="sidebar-link">docker 网络</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>http</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/http/http1/" class="sidebar-link">http 简介</a></li><li><a href="/blog/blog/http/http2/" class="sidebar-link">http cors 简介</a></li><li><a href="/blog/blog/http/http3/" class="sidebar-link">http cache-Control 缓存小节</a></li><li><a href="/blog/blog/http/http4/" class="sidebar-link">http长连接、cookie、数据协商</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>杂记</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/axios/download/" class="sidebar-link">axios post 下载文件</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>支付宝返回form表单新页面打开</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/blog/blog/thoughts/zfbJump/" class="sidebar-link">vue点击按钮新页面打开一个支付宝的支付页面</a></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><h3 id="打开-nginx-download-页面"><a href="#打开-nginx-download-页面" aria-hidden="true" class="header-anchor">#</a> 打开 <a href="https://nginx.org/en/linux_packages.html#stable" target="_blank" rel="noopener noreferrer">nginx<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> download 页面</h3> <h4 id="创建文件-nginx-repo"><a href="#创建文件-nginx-repo" aria-hidden="true" class="header-anchor">#</a> 创建文件 nginx.repo</h4> <div class="language- extra-class"><pre class="language-text"><code>$ vim /etc/yum.repos.d/nginx.repo
+</code></pre></div><h4 id="添加配置"><a href="#添加配置" aria-hidden="true" class="header-anchor">#</a> 添加配置</h4> <div class="language- extra-class"><pre class="language-text"><code>[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/7/$basearch/
+gpgcheck=0
+enabled=1
+</code></pre></div><h4 id="创建nginx-signing-key"><a href="#创建nginx-signing-key" aria-hidden="true" class="header-anchor">#</a> 创建nginx_signing.key</h4> <div class="language- extra-class"><pre class="language-text"><code>$ vim nginx_signing.key
+</code></pre></div><h4 id="添加key的内容"><a href="#添加key的内容" aria-hidden="true" class="header-anchor">#</a> 添加key的内容</h4> <div class="language- extra-class"><pre class="language-text"><code>-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v2.0.22 (GNU/Linux)
+
+mQENBE5OMmIBCAD+FPYKGriGGf7NqwKfWC83cBV01gabgVWQmZbMcFzeW+hMsgxH
+W6iimD0RsfZ9oEbfJCPG0CRSZ7ppq5pKamYs2+EJ8Q2ysOFHHwpGrA2C8zyNAs4I
+QxnZZIbETgcSwFtDun0XiqPwPZgyuXVm9PAbLZRbfBzm8wR/3SWygqZBBLdQk5TE
+fDR+Eny/M1RVR4xClECONF9UBB2ejFdI1LD45APbP2hsN/piFByU1t7yK2gpFyRt
+97WzGHn9MV5/TL7AmRPM4pcr3JacmtCnxXeCZ8nLqedoSuHFuhwyDnlAbu8I16O5
+XRrfzhrHRJFM1JnIiGmzZi6zBvH0ItfyX6ttABEBAAG0KW5naW54IHNpZ25pbmcg
+a2V5IDxzaWduaW5nLWtleUBuZ2lueC5jb20+iQE+BBMBAgAoAhsDBgsJCAcDAgYV
+CAIJCgsEFgIDAQIeAQIXgAUCV2K1+AUJGB4fQQAKCRCr9b2Ce9m/YloaB/9XGrol
+kocm7l/tsVjaBQCteXKuwsm4XhCuAQ6YAwA1L1UheGOG/aa2xJvrXE8X32tgcTjr
+KoYoXWcdxaFjlXGTt6jV85qRguUzvMOxxSEM2Dn115etN9piPl0Zz+4rkx8+2vJG
+F+eMlruPXg/zd88NvyLq5gGHEsFRBMVufYmHtNfcp4okC1klWiRIRSdp4QY1wdrN
+1O+/oCTl8Bzy6hcHjLIq3aoumcLxMjtBoclc/5OTioLDwSDfVx7rWyfRhcBzVbwD
+oe/PD08AoAA6fxXvWjSxy+dGhEaXoTHjkCbz/l6NxrK3JFyauDgU4K4MytsZ1HDi
+MgMW8hZXxszoICTTiQEcBBABAgAGBQJOTkelAAoJEKZP1bF62zmo79oH/1XDb29S
+YtWp+MTJTPFEwlWRiyRuDXy3wBd/BpwBRIWfWzMs1gnCjNjk0EVBVGa2grvy9Jtx
+JKMd6l/PWXVucSt+U/+GO8rBkw14SdhqxaS2l14v6gyMeUrSbY3XfToGfwHC4sa/
+Thn8X4jFaQ2XN5dAIzJGU1s5JA0tjEzUwCnmrKmyMlXZaoQVrmORGjCuH0I0aAFk
+RS0UtnB9HPpxhGVbs24xXZQnZDNbUQeulFxS4uP3OLDBAeCHl+v4t/uotIad8v6J
+SO93vc1evIje6lguE81HHmJn9noxPItvOvSMb2yPsE8mH4cJHRTFNSEhPW6ghmlf
+Wa9ZwiVX5igxcvaIRgQQEQIABgUCTk5b0gAKCRDs8OkLLBcgg1G+AKCnacLb/+W6
+cflirUIExgZdUJqoogCeNPVwXiHEIVqithAM1pdY/gcaQZmIRgQQEQIABgUCTk5f
+YQAKCRCpN2E5pSTFPnNWAJ9gUozyiS+9jf2rJvqmJSeWuCgVRwCcCUFhXRCpQO2Y
+Va3l3WuB+rgKjsQ=
+=EWWI
+-----END PGP PUBLIC KEY BLOCK-----
+</code></pre></div><h4 id="加载key"><a href="#加载key" aria-hidden="true" class="header-anchor">#</a> 加载key</h4> <div class="language- extra-class"><pre class="language-text"><code>$ sudo rpm --import nginx_signing.key
+</code></pre></div><h4 id="安装nginx"><a href="#安装nginx" aria-hidden="true" class="header-anchor">#</a> 安装nginx</h4> <div class="language- extra-class"><pre class="language-text"><code>$ yum install nginx -y
+</code></pre></div><h4 id="启动nginx"><a href="#启动nginx" aria-hidden="true" class="header-anchor">#</a> 启动nginx</h4> <div class="language- extra-class"><pre class="language-text"><code>$ nginx
+</code></pre></div><h4 id="测试nginx"><a href="#测试nginx" aria-hidden="true" class="header-anchor">#</a> 测试nginx</h4> <div class="language- extra-class"><pre class="language-text"><code>$ curl localhost
+</code></pre></div><p>结果如下,安装成功
+<img src="/blog/assets/img/1.0d139f52.png" alt></p></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/blog/blog/node/install/" class="prev">
+          node 环境搭建 for centos、ubuntu、macOS
+        </a></span> <span class="next"><a href="/blog/blog/nginx/nginx_web/">
+          nginx 作为web服务器的常用配置
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/blog/assets/js/app.8033995d.js" defer></script><script src="/blog/assets/js/13.8f617254.js" defer></script>
+  </body>
+</html>
